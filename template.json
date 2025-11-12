@@ -1,0 +1,77 @@
+{
+  "Actor": {
+    "types": ["toy"],
+    "toy": {
+      "build": {
+        "size": "",
+        "material": "",
+        "cuteness": "",
+        "yearsOwned": "",
+        "batteries": false,
+        "joints": false,
+        "wheels": false
+      },
+      "skills": {
+        "sneak": {
+          "value": 0
+        },
+        "force": {
+          "value": 0
+        },
+        "maneuver": {
+          "value": 0
+        },
+        "techUse": {
+          "value": 0
+        },
+        "assess": {
+          "value": 0
+        },
+        "charm": {
+          "value": 0
+        },
+        "intimidate": {
+          "value": 0
+        }
+      },
+      "wellbeing": {
+        "ba": {
+          "value": 10
+        },
+        "bp": {
+          "value": 0,
+          "max": 0
+        },
+        "battery": {
+          "charge": 3,
+          "max": 3
+        }
+      },
+      "combat": {
+        "movement": 0
+      },
+      "healing": {
+        "hugMod": 0
+      },
+      "abilities": {
+        "ability1": {
+          "name": "",
+          "description": "",
+          "skillMod": "none",
+          "diceType": "1d6",
+          "usesBattery": false
+        },
+        "ability2": {
+          "name": "",
+          "description": "",
+          "skillMod": "none",
+          "diceType": "1d6",
+          "usesBattery": false
+        }
+      }
+    }
+  },
+  "Item": {
+    "types": []
+  }
+}

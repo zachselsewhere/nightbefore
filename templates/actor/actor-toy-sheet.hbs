@@ -1,0 +1,266 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"/>
+      </h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="stats">Stats</a>
+    <a class="item" data-tab="build">Toy Build</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    {{!-- Stats Tab --}}
+    <div class="tab stats" data-group="primary" data-tab="stats">
+
+      {{!-- Top Row: Wellbeing + Skills --}}
+      <div class="stats-row">
+
+        {{!-- Wellbeing --}}
+        <div class="wellbeing-compact">
+          <div class="stat-box ba-box">
+            <label>BA</label>
+            <div class="stat-value">{{system.wellbeing.ba.value}}</div>
+          </div>
+
+          <div class="stat-box bp-box">
+            <label>Breaking Points</label>
+            <div class="bp-inputs">
+              <input type="number" name="system.wellbeing.bp.value" value="{{system.wellbeing.bp.value}}" placeholder="Current" data-dtype="Number"/>
+              <span>/</span>
+              <input type="number" name="system.wellbeing.bp.max" value="{{system.wellbeing.bp.max}}" placeholder="Max" data-dtype="Number"/>
+            </div>
+          </div>
+
+          {{#if system.build.batteries}}
+          <div class="battery-compact">
+            <label>⚡ Battery</label>
+            <button type="button" class="battery-display" data-action="discharge" title="Click to use battery charge">
+              <div class="battery-body">
+                <div class="battery-cell {{#if (gte system.wellbeing.battery.charge 1)}}charged{{/if}} {{#if (eq system.wellbeing.battery.charge 3)}}full{{/if}} {{#if (eq system.wellbeing.battery.charge 2)}}medium{{/if}} {{#if (eq system.wellbeing.battery.charge 1)}}low{{/if}}">
+                  {{#if (eq system.wellbeing.battery.charge 0)}}✕{{/if}}
+                </div>
+                <div class="battery-cell {{#if (gte system.wellbeing.battery.charge 2)}}charged{{/if}} {{#if (eq system.wellbeing.battery.charge 3)}}full{{/if}} {{#if (eq system.wellbeing.battery.charge 2)}}medium{{/if}}"></div>
+                <div class="battery-cell {{#if (gte system.wellbeing.battery.charge 3)}}charged{{/if}} {{#if (eq system.wellbeing.battery.charge 3)}}full{{/if}}"></div>
+              </div>
+              <div class="battery-tip"></div>
+            </button>
+            <div class="battery-recharge">
+              <button type="button" class="battery-recharge-btn" data-charge="3" title="Recharge to full">🔌 Recharge</button>
+            </div>
+          </div>
+          {{/if}}
+
+          <div class="movement-box">
+            <label>Movement</label>
+            <div class="movement-value">{{system.combat.movement}}"</div>
+          </div>
+        </div>
+
+        {{!-- Skills --}}
+        <div class="skills-compact">
+          <h3>🎲 Skills</h3>
+          <div class="skills-grid">
+            <button type="button" class="skill-roll" data-skill="sneak">Sneak</button>
+            <span class="skill-mod">{{numberFormat system.skills.sneak.value decimals=0 sign=true}}</span>
+
+            <button type="button" class="skill-roll" data-skill="force">Force</button>
+            <span class="skill-mod">{{numberFormat system.skills.force.value decimals=0 sign=true}}</span>
+
+            <button type="button" class="skill-roll" data-skill="maneuver">Maneuver</button>
+            <span class="skill-mod">{{numberFormat system.skills.maneuver.value decimals=0 sign=true}}</span>
+
+            <button type="button" class="skill-roll" data-skill="techUse">Tech Use</button>
+            <span class="skill-mod">{{numberFormat system.skills.techUse.value decimals=0 sign=true}}</span>
+
+            <button type="button" class="skill-roll" data-skill="assess">Assess</button>
+            <span class="skill-mod">{{numberFormat system.skills.assess.value decimals=0 sign=true}}</span>
+
+            <button type="button" class="skill-roll" data-skill="charm">Charm</button>
+            <span class="skill-mod">{{numberFormat system.skills.charm.value decimals=0 sign=true}}</span>
+
+            <button type="button" class="skill-roll" data-skill="intimidate">Intimidate</button>
+            <span class="skill-mod">{{numberFormat system.skills.intimidate.value decimals=0 sign=true}}</span>
+          </div>
+        </div>
+
+        {{!-- Combat & Healing --}}
+        <div class="actions-compact">
+          <div class="combat-section">
+            <h3>Combat</h3>
+            <button type="button" class="bop-roll action-btn">🥊 Bop!</button>
+            <button type="button" class="bop-damage-roll action-btn">💥 Bop Damage</button>
+          </div>
+
+          <div class="healing-section">
+            <h3>Healing</h3>
+            <button type="button" class="hug-roll action-btn">💕 Hug (1d6{{numberFormat system.healing.hugMod decimals=0 sign=true}})</button>
+          </div>
+        </div>
+      </div>
+
+      {{!-- Abilities --}}
+      <div class="abilities-compact">
+        <h3>✨ Abilities</h3>
+
+        <div class="ability-block">
+          <div class="ability-title-row">
+            <input type="text" name="system.abilities.ability1.name" value="{{system.abilities.ability1.name}}" placeholder="Ability 1 Name" class="ability-name"/>
+          </div>
+          <div class="ability-controls">
+            <div class="ability-controls-left">
+              <select name="system.abilities.ability1.skillMod" class="ability-select">
+                <option value="none">No Mod</option>
+                <option value="sneak" {{#if (eq system.abilities.ability1.skillMod "sneak")}}selected{{/if}}>Sneak</option>
+                <option value="force" {{#if (eq system.abilities.ability1.skillMod "force")}}selected{{/if}}>Force</option>
+                <option value="maneuver" {{#if (eq system.abilities.ability1.skillMod "maneuver")}}selected{{/if}}>Maneuver</option>
+                <option value="techUse" {{#if (eq system.abilities.ability1.skillMod "techUse")}}selected{{/if}}>Tech</option>
+                <option value="assess" {{#if (eq system.abilities.ability1.skillMod "assess")}}selected{{/if}}>Assess</option>
+                <option value="charm" {{#if (eq system.abilities.ability1.skillMod "charm")}}selected{{/if}}>Charm</option>
+                <option value="intimidate" {{#if (eq system.abilities.ability1.skillMod "intimidate")}}selected{{/if}}>Intimidate</option>
+              </select>
+              <select name="system.abilities.ability1.diceType" class="ability-select">
+                <option value="1d6" {{#if (eq system.abilities.ability1.diceType "1d6")}}selected{{/if}}>d6</option>
+                <option value="1d8" {{#if (eq system.abilities.ability1.diceType "1d8")}}selected{{/if}}>d8</option>
+                <option value="1d10" {{#if (eq system.abilities.ability1.diceType "1d10")}}selected{{/if}}>d10</option>
+                <option value="battery" {{#if (eq system.abilities.ability1.diceType "battery")}}selected{{/if}}>Battery</option>
+              </select>
+            </div>
+            <div class="ability-controls-right">
+              {{#if system.build.batteries}}
+              <label class="battery-check" title="Enable if this ability requires a use of your battery">
+                <input type="checkbox" name="system.abilities.ability1.usesBattery" {{checked system.abilities.ability1.usesBattery}}/> 🔋 Uses Battery
+              </label>
+              {{/if}}
+              <button type="button" class="ability-roll" data-ability="ability1">Use</button>
+            </div>
+          </div>
+          <textarea name="system.abilities.ability1.description" class="ability-description" placeholder="Describe what this ability does, its effects, and when it can be used...">{{system.abilities.ability1.description}}</textarea>
+        </div>
+
+        <div class="ability-block">
+          <div class="ability-title-row">
+            <input type="text" name="system.abilities.ability2.name" value="{{system.abilities.ability2.name}}" placeholder="Ability 2 Name" class="ability-name"/>
+          </div>
+          <div class="ability-controls">
+            <div class="ability-controls-left">
+              <select name="system.abilities.ability2.skillMod" class="ability-select">
+                <option value="none">No Mod</option>
+                <option value="sneak" {{#if (eq system.abilities.ability2.skillMod "sneak")}}selected{{/if}}>Sneak</option>
+                <option value="force" {{#if (eq system.abilities.ability2.skillMod "force")}}selected{{/if}}>Force</option>
+                <option value="maneuver" {{#if (eq system.abilities.ability2.skillMod "maneuver")}}selected{{/if}}>Maneuver</option>
+                <option value="techUse" {{#if (eq system.abilities.ability2.skillMod "techUse")}}selected{{/if}}>Tech</option>
+                <option value="assess" {{#if (eq system.abilities.ability2.skillMod "assess")}}selected{{/if}}>Assess</option>
+                <option value="charm" {{#if (eq system.abilities.ability2.skillMod "charm")}}selected{{/if}}>Charm</option>
+                <option value="intimidate" {{#if (eq system.abilities.ability2.skillMod "intimidate")}}selected{{/if}}>Intimidate</option>
+              </select>
+              <select name="system.abilities.ability2.diceType" class="ability-select">
+                <option value="1d6" {{#if (eq system.abilities.ability2.diceType "1d6")}}selected{{/if}}>d6</option>
+                <option value="1d8" {{#if (eq system.abilities.ability2.diceType "1d8")}}selected{{/if}}>d8</option>
+                <option value="1d10" {{#if (eq system.abilities.ability2.diceType "1d10")}}selected{{/if}}>d10</option>
+                <option value="battery" {{#if (eq system.abilities.ability2.diceType "battery")}}selected{{/if}}>Battery</option>
+              </select>
+            </div>
+            <div class="ability-controls-right">
+              {{#if system.build.batteries}}
+              <label class="battery-check" title="Enable if this ability requires a use of your battery">
+                <input type="checkbox" name="system.abilities.ability2.usesBattery" {{checked system.abilities.ability2.usesBattery}}/> 🔋 Uses Battery
+              </label>
+              {{/if}}
+              <button type="button" class="ability-roll" data-ability="ability2">Use</button>
+            </div>
+          </div>
+          <textarea name="system.abilities.ability2.description" class="ability-description" placeholder="Describe what this ability does, its effects, and when it can be used...">{{system.abilities.ability2.description}}</textarea>
+        </div>
+      </div>
+
+    </div>
+
+    {{!-- Build Tab --}}
+    <div class="tab build" data-group="primary" data-tab="build">
+
+      <div class="build-section">
+        <h3>🧸 Toy Build</h3>
+        <p class="build-hint">Configure your toy's physical characteristics. These settings determine all skill modifiers and are typically set once during character creation.</p>
+
+        <div class="build-grid">
+          <label>Size</label>
+          <select name="system.build.size">
+            <option value="">Select</option>
+            <option value="smallest" {{#if (eq system.build.size "smallest")}}selected{{/if}}>Smallest (0-3")</option>
+            <option value="small" {{#if (eq system.build.size "small")}}selected{{/if}}>Small (3-6")</option>
+            <option value="medium" {{#if (eq system.build.size "medium")}}selected{{/if}}>Medium (6-9")</option>
+            <option value="large" {{#if (eq system.build.size "large")}}selected{{/if}}>Large (9-12")</option>
+            <option value="largest" {{#if (eq system.build.size "largest")}}selected{{/if}}>Largest (12"+)</option>
+          </select>
+
+          <label>Material</label>
+          <select name="system.build.material">
+            <option value="">Select</option>
+            <option value="plush" {{#if (eq system.build.material "plush")}}selected{{/if}}>Plush</option>
+            <option value="soft" {{#if (eq system.build.material "soft")}}selected{{/if}}>Soft</option>
+            <option value="combo" {{#if (eq system.build.material "combo")}}selected{{/if}}>Combination</option>
+            <option value="flexplas" {{#if (eq system.build.material "flexplas")}}selected{{/if}}>Flexible Plastic</option>
+            <option value="hardplas" {{#if (eq system.build.material "hardplas")}}selected{{/if}}>Hard Plastic</option>
+          </select>
+
+          <label>Cuteness</label>
+          <select name="system.build.cuteness">
+            <option value="">Select</option>
+            <option value="ugly" {{#if (eq system.build.cuteness "ugly")}}selected{{/if}}>Ugly</option>
+            <option value="notcute" {{#if (eq system.build.cuteness "notcute")}}selected{{/if}}>Not Cute</option>
+            <option value="meh" {{#if (eq system.build.cuteness "meh")}}selected{{/if}}>Meh</option>
+            <option value="cute" {{#if (eq system.build.cuteness "cute")}}selected{{/if}}>Cute</option>
+            <option value="adorable" {{#if (eq system.build.cuteness "adorable")}}selected{{/if}}>Adorable</option>
+          </select>
+
+          <label>Years Owned</label>
+          <select name="system.build.yearsOwned">
+            <option value="">Select</option>
+            <option value="one" {{#if (eq system.build.yearsOwned "one")}}selected{{/if}}>1 Year</option>
+            <option value="two" {{#if (eq system.build.yearsOwned "two")}}selected{{/if}}>2 Years</option>
+            <option value="three" {{#if (eq system.build.yearsOwned "three")}}selected{{/if}}>3 Years</option>
+            <option value="four" {{#if (eq system.build.yearsOwned "four")}}selected{{/if}}>4 Years</option>
+            <option value="five" {{#if (eq system.build.yearsOwned "five")}}selected{{/if}}>5+ Years</option>
+          </select>
+        </div>
+
+        <div class="extras-section">
+          <h4>Extra Parts</h4>
+          <div class="extras-grid">
+            <label><input type="checkbox" name="system.build.batteries" {{checked system.build.batteries}}/> 🔋 Batteries (+3 Tech Use)</label>
+            <label><input type="checkbox" name="system.build.joints" {{checked system.build.joints}}/> 🦾 Joints (+3 Maneuver)</label>
+            <label><input type="checkbox" name="system.build.wheels" {{checked system.build.wheels}}/> 🛞 Wheels (+10 Movement)</label>
+          </div>
+        </div>
+
+        <div class="build-summary">
+          <h4>Current Modifiers</h4>
+          <div class="summary-grid">
+            <div><strong>Movement:</strong> {{system.combat.movement}}"</div>
+            <div><strong>Sneak:</strong> {{numberFormat system.skills.sneak.value decimals=0 sign=true}}</div>
+            <div><strong>Force:</strong> {{numberFormat system.skills.force.value decimals=0 sign=true}}</div>
+            <div><strong>Maneuver:</strong> {{numberFormat system.skills.maneuver.value decimals=0 sign=true}}</div>
+            <div><strong>Tech Use:</strong> {{numberFormat system.skills.techUse.value decimals=0 sign=true}}</div>
+            <div><strong>Assess:</strong> {{numberFormat system.skills.assess.value decimals=0 sign=true}}</div>
+            <div><strong>Charm:</strong> {{numberFormat system.skills.charm.value decimals=0 sign=true}}</div>
+            <div><strong>Intimidate:</strong> {{numberFormat system.skills.intimidate.value decimals=0 sign=true}}</div>
+            <div><strong>Bop Avoidance:</strong> {{system.wellbeing.ba.value}}</div>
+            <div><strong>Hug Modifier:</strong> {{numberFormat system.healing.hugMod decimals=0 sign=true}}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</form>

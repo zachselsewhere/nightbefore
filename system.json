@@ -1,23 +1,24 @@
 {
   "id": "nightbefore",
   "title": "The Night Before",
-  "description": "A whimsical system for Foundry VTT!",
-  "version": "12.0.0",
+  "description": "A whimsical RPG system where toys come to life on the night before Christmas",
+  "version": "1.0.0",
   "compatibility": {
-    "minimum": 11,
-    "verified": "12.331",
-    "maximum": 12
+    "minimum": "12",
+    "verified": "12.331"
   },
   "authors": [
     {
-      "name": "Zachselsewhere",
-      "email": "zachdtripp@gmail.com",
-      "url": ""
+      "name": "zachselsewhere",
+      "url": "https://github.com/zachselsewhere"
     }
   ],
-  "esmodules": ["module/nightbefore.mjs"],
-  "styles": ["css/nightbefore.css"],
-  "packs": [],
+  "esmodules": [
+    "module/nightbefore.mjs"
+  ],
+  "styles": [
+    "css/nightbefore.css"
+  ],
   "languages": [
     {
       "lang": "en",
@@ -25,19 +26,22 @@
       "path": "lang/en.json"
     }
   ],
-  "grid": {
-    "distance": 1,
-    "units": "inches"
-  },
+  "packs": [],
   "documentTypes": {
     "Actor": {
-      "character": {}
+      "toy": {}
     }
   },
-  "primaryTokenAttribute": "health",
-  "socket": false,
+  "grid": {
+    "distance": 1,
+    "units": "in"
+  },
+  "primaryTokenAttribute": "wellbeing.bp",
+  "secondaryTokenAttribute": null,
   "url": "https://github.com/zachselsewhere/nightbefore",
-  "manifest": "https://github.com/zachselsewhere/nightbefore/releases/latest/download/system.json",
-  "download": "https://github.com/zachselsewhere/nightbefore/releases/latest/download/system.zip",
-  "license": "LICENSE.txt"
+  "manifest": "https://raw.githubusercontent.com/zachselsewhere/nightbefore/main/system.json",
+  "download": "https://github.com/zachselsewhere/nightbefore/archive/refs/heads/main.zip",
+  "bugs": "https://github.com/zachselsewhere/nightbefore/issues",
+  "readme": "https://github.com/zachselsewhere/nightbefore/blob/main/README.md",
+  "license": "LICENSE"
 }

@@ -1,0 +1,1037 @@
+/* The Night Before - Christmas Theme System Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Rum+Raisin&family=Sansita+Swashed:wght@300;400;500;600;700&display=swap');
+
+.nightbefore {
+  font-family: 'Sansita Swashed', cursive;
+  font-size: 15px;
+}
+
+.nightbefore h3 {
+  font-family: 'Rum Raisin', cursive;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.nightbefore h4 {
+  font-family: 'Rum Raisin', cursive;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.nightbefore .window-content {
+  background: radial-gradient(ellipse at center, #165b33 0%, #0d3d22 50%, #051a0f 100%);
+  color: #ffffff;
+}
+
+/* Header - Christmas Themed */
+.nightbefore .sheet-header {
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-bottom: none;
+  background: linear-gradient(135deg, #c41e3a 0%, #165b33 50%, #c41e3a 100%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.nightbefore .sheet-header .header-fields {
+  flex: 1;
+}
+
+.nightbefore .sheet-header .charname {
+  margin: 0;
+  padding: 8px 10px;
+  border-bottom: 3px solid #ffd700;
+}
+
+.nightbefore .sheet-header .charname input {
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  color: #ffd700;;
+  padding: 4px 8px;
+  font-size: 40px;
+  font-weight: 400;
+  text-align: center;
+  background: rgba(255, 255, 255, 0);
+  font-family: 'Great Vibes', cursive;
+  letter-spacing: 0px;
+}
+
+/* Tabs - Christmas Theme */
+.nightbefore .sheet-tabs {
+  flex: 0 0 38px;
+  border-bottom: 3px solid #ffd700;
+  margin: 0;
+}
+
+.nightbefore .tabs {
+  display: flex;
+  gap: 8px;
+  padding: 5px 10px;
+  background: linear-gradient(to bottom, #165b33, #0f4228);
+}
+
+.nightbefore .tabs .item {
+  flex: 1;
+  text-align: center;
+  padding: 8px 16px;
+  background: linear-gradient(to bottom, #f8f9fa, #e8f4f8);
+  border: 2px solid #ffd700;
+  border-radius: 8px 8px 0 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: #165b33;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  letter-spacing: 0.5px;
+}
+
+.nightbefore .tabs .item:hover {
+  background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.nightbefore .tabs .item.active {
+  background: linear-gradient(to bottom, #c41e3a, #a01729);
+  color: white;
+  border-bottom: 3px solid #f8f9fa;
+  margin-bottom: -3px;
+  box-shadow: 0 -2px 8px rgba(196, 30, 58, 0.4);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-weight: 700;
+}
+
+/* Sheet Body - Fixed Scrolling */
+.nightbefore .sheet-body {
+  flex: 1;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding: 12px;
+  min-height: 0; /* Critical for flexbox scrolling */
+  background: radial-gradient(ellipse at center, #165b33 0%, #0d3d22 50%, #051a0f 100%);
+}
+
+.nightbefore .sheet-body .tab {
+  display: none;
+}
+
+.nightbefore .sheet-body .tab.active {
+  display: block;
+  height: 100%;
+}
+
+/* Layout Rows */
+.nightbefore .stats-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.nightbefore .movement-box {
+  background: linear-gradient(135deg, #0d3d22 0%, #165b33 100%);
+  border: 3px solid #ffd700;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .movement-box label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffd700;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .movement-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Build Section - Compact */
+.nightbefore .build-compact {
+  flex: 2;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid #8b4513;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.nightbefore .build-compact h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #8b4513;
+  border-bottom: 1px solid #d4a574;
+  padding-bottom: 5px;
+}
+
+.nightbefore .build-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.nightbefore .build-grid label {
+  font-weight: bold;
+  font-size: 13px;
+  color: #654321;
+}
+
+.nightbefore .build-grid select {
+  padding: 8px 10px;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 36px;
+}
+
+.nightbefore .extras-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #d4a574;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nightbefore .extras-row label {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nightbefore .extras-row input[type="checkbox"] {
+  margin: 0;
+}
+
+.nightbefore .movement-display {
+  margin-left: auto;
+  font-weight: bold;
+  font-size: 14px;
+  color: #8b4513;
+}
+
+/* Wellbeing Section - Christmas Theme */
+.nightbefore .wellbeing-compact {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nightbefore .stat-box {
+  background: linear-gradient(135deg, #8b1a2b 0%, #c41e3a 100%);
+  border: 3px solid #ffd700;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .stat-box label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffd700;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+/* BA Box - Shield Shape */
+.nightbefore .ba-box {
+  position: relative;
+  background: linear-gradient(135deg, #c41e3a 0%, #a01729 100%);
+  border: 4px solid #ffd700;
+  border-radius: 12px 12px 20px 20px;
+  padding: 15px 12px 20px 12px;
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.3);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 70%,
+    50% 100%,
+    0% 70%
+  );
+}
+
+.nightbefore .ba-box::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px 8px 16px 16px;
+  pointer-events: none;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 70%,
+    50% 100%,
+    0% 70%
+  );
+}
+
+.nightbefore .ba-box label {
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.nightbefore .ba-box .stat-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.5);
+  margin-top: 5px;
+}
+
+.nightbefore .bp-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nightbefore .bp-inputs input {
+  width: 60px;
+  padding: 4px;
+  text-align: center;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2c2c2c;
+
+}
+
+.nightbefore .bp-inputs span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.nightbefore .bp-box label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffd700;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Battery - Christmas Theme */
+.nightbefore .battery-compact {
+  background: linear-gradient(135deg, #8b6914 0%, #b8860b 100%);
+  border: 3px solid #ffd700;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .battery-compact label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.nightbefore .battery-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 auto;
+  transition: transform 0.2s;
+}
+
+.nightbefore .battery-display:hover {
+  transform: scale(1.05);
+}
+
+.nightbefore .battery-body {
+  display: flex;
+  gap: 3px;
+  background: #333;
+  border: 3px solid #333;
+  border-radius: 4px;
+  padding: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.nightbefore .battery-tip {
+  width: 6px;
+  height: 20px;
+  background: #333;
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.nightbefore .battery-cell {
+  width: 20px;
+  height: 40px;
+  background: #555;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000;
+  transition: background 0.3s;
+}
+
+.nightbefore .battery-cell.charged.full {
+  background: linear-gradient(to bottom, #00ff00, #00cc00);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+.nightbefore .battery-cell.charged.medium {
+  background: linear-gradient(to bottom, #ffff00, #cccc00);
+  box-shadow: 0 0 8px rgba(255, 255, 0, 0.6);
+}
+
+.nightbefore .battery-cell.charged.low {
+  background: linear-gradient(to bottom, #ff0000, #cc0000);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.nightbefore .battery-recharge {
+  margin-top: 8px;
+}
+
+.nightbefore .battery-recharge-btn {
+  padding: 4px 10px;
+  background: linear-gradient(to bottom, #4a90e2, #2868b2);
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.nightbefore .battery-recharge-btn:hover {
+  background: linear-gradient(to bottom, #5aa0f2, #3878c2);
+  transform: scale(1.05);
+}
+
+/* Skills Section - Christmas Theme */
+.nightbefore .skills-compact {
+  flex: 2;
+  background: linear-gradient(135deg, #0d3d22 0%, #165b33 100%);
+  border: 3px solid #ffd700;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .skills-compact h3 {
+  margin: 0 0 12px 0;
+  font-size: 22px;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  padding-bottom: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.nightbefore .skills-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.nightbefore .skill-roll {
+  padding: 8px 14px;
+  background: linear-gradient(to bottom, #165b33, #0f4228);
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.nightbefore .skill-roll:hover {
+  background: linear-gradient(to bottom, #1f7a45, #165b33);
+  transform: translateX(3px) scale(1.02);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+.nightbefore .skill-mod {
+  font-size: 18px;
+  font-weight: bold;
+  color: #165b33;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 2px solid #c41e3a;
+  text-align: center;
+  min-width: 45px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Actions Wrapper - Contains both Combat and Healing */
+.nightbefore .actions-compact {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Combat Section */
+.nightbefore .combat-section {
+  background: linear-gradient(135deg, #8b1a2b 0%, #c41e3a 100%);
+  border: 3px solid #ffd700;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .combat-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Healing Section */
+.nightbefore .healing-section {
+  background: linear-gradient(135deg, #8b1a70 0%, #7e124d 100%);
+  border: 3px solid #ffd700;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .healing-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.nightbefore .action-btn {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 8px;
+  border: 2px solid;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.nightbefore .bop-roll {
+  background: linear-gradient(to bottom, #c41e3a, #a01729);
+  border-color: #ffd700;
+}
+
+.nightbefore .bop-roll:hover {
+  background: linear-gradient(to bottom, #e02040, #c41e3a);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.nightbefore .bop-damage-roll {
+  background: linear-gradient(to bottom, #d2691e, #a0522d);
+  border-color: #ffd700;
+}
+
+.nightbefore .bop-damage-roll:hover {
+  background: linear-gradient(to bottom, #ff8c42, #d2691e);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.nightbefore .hug-roll {
+  background: linear-gradient(to bottom, #ff69b4, #c71585);
+  border-color: #ffd700;
+}
+
+.nightbefore .hug-roll:hover {
+  background: linear-gradient(to bottom, #ff85c0, #ff69b4);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Abilities Section - Christmas Theme with Title Above */
+.nightbefore .abilities-compact {
+  background: linear-gradient(135deg, #00000066 0%, #b8870b33 100%);
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .abilities-compact h3 {
+  margin: 0 0 15px 0;
+  font-size: 24px;
+  color: #ffffff;
+  border-bottom: 3px solid #ffffff;
+  padding-bottom: 8px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .ability-block {
+  margin-bottom: 18px;
+  padding: 15px;
+  background: linear-gradient(135deg, #0d3d22 0%, #165b33 100%);
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .ability-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.nightbefore .ability-name {
+  flex: 1;
+  padding: 4px 14px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  box-sizing: border-box;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  height: auto; 
+}
+
+.nightbefore .ability-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.nightbefore .ability-controls-left {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nightbefore .ability-controls-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nightbefore .ability-select {
+  padding: 8px 12px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 2;
+  min-height: 38px;
+  height: 38px;
+}
+
+.nightbefore .ability-select option {
+  padding: 8px;
+  line-height: 2;
+  font-size: 14px;
+  background: #0d3d22;
+  color: #ffffff;
+}
+
+.nightbefore .battery-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+  padding: 6px 10px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  transition: all 0.2s;
+  color: #ffffff;
+}
+
+.nightbefore .battery-check:hover {
+  background: rgba(255, 215, 0, 0.3);
+  transform: scale(1.02);
+}
+
+.nightbefore .ability-roll {
+  padding: 8px 16px;
+  background: linear-gradient(to bottom, #165b33, #0f4228);
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 0.5px;
+}
+
+.nightbefore .ability-roll:hover {
+  background: linear-gradient(to bottom, #1f7a45, #165b33);
+  transform: scale(1.08);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+.nightbefore .ability-description {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+}
+
+.nightbefore .ability-description::placeholder {
+  color: #cccccc;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+  .nightbefore .top-row,
+  .nightbefore .middle-row {
+    flex-direction: column;
+  }
+
+  .nightbefore .system-title {
+    font-size: 14px;
+  }
+
+  .nightbefore .char-name-input {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+/* Scrollbar Styling */
+.nightbefore .sheet-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.nightbefore .sheet-body::-webkit-scrollbar-track {
+  background: #f5deb3;
+  border-radius: 4px;
+}
+
+.nightbefore .sheet-body::-webkit-scrollbar-thumb {
+  background: #8b4513;
+  border-radius: 4px;
+}
+
+.nightbefore .sheet-body::-webkit-scrollbar-thumb:hover {
+  background: #654321;
+}
+
+/* Build Tab Styles */
+.nightbefore .build-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nightbefore .build-section h3 {
+  font-size: 20px;
+  color: #ffd700;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.nightbefore .build-hint {
+  text-align: center;
+  font-style: italic;
+  color: #cccccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffd700;
+  border-radius: 5px;
+}
+
+.nightbefore .build-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: linear-gradient(135deg, #0d3d22 0%, #165b33 100%);
+  border: 3px solid #ffd700;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .build-grid label {
+  font-weight: bold;
+  align-self: center;
+  color: #ffffff;
+}
+
+.nightbefore .build-grid select {
+  padding: 8px 10px;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 36px;
+}
+
+.nightbefore .extras-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: linear-gradient(135deg, #8b1a2b 0%, #c41e3a 100%);
+  border: 3px solid #ffd700;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .extras-section h4 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.nightbefore .extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.nightbefore .extras-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.nightbefore .extras-grid label:hover {
+  background: rgba(255, 215, 0, 0.2);
+}
+
+.nightbefore .build-summary {
+  padding: 15px;
+  background: linear-gradient(135deg, #8b6914 0%, #b8860b 100%);
+  border: 3px solid #ffd700;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nightbefore .build-summary h4 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.nightbefore .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.nightbefore .summary-grid div {
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.nightbefore .summary-grid strong {
+  color: #ffd700;
+}
+
+/* Chat Message Styling - Christmas Themed Roll Messages */
+.nightbefore-roll {
+  font-family: 'Rum Raisin', cursive;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.nightbefore-roll .roll-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.nightbefore-roll .roll-subtext {
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+.nightbefore-roll .roll-modifier {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.nightbefore-roll .roll-battery {
+  font-size: 13px;
+  margin-top: 5px;
+  padding: 3px 8px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid #ffd700;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Skill Roll Messages */
+.skill-roll-msg {
+  background: linear-gradient(135deg, #ffffff 0%, #e8f4f8 100%);
+  border: 3px solid #165b33;
+  box-shadow: 0 2px 6px rgba(22, 91, 51, 0.3);
+}
+
+.skill-roll-msg .roll-header {
+  color: #165b33;
+}
+
+/* Bop Attack Messages */
+.bop-roll-msg {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+  border: 3px solid #c41e3a;
+  box-shadow: 0 2px 6px rgba(196, 30, 58, 0.4);
+}
+
+.bop-roll-msg .roll-header {
+  color: #c41e3a;
+  font-size: 22px;
+}
+
+/* Bop Damage Messages */
+.bop-damage-msg {
+  background: linear-gradient(135deg, #fff0e5 0%, #ffe5cc 100%);
+  border: 3px solid #d2691e;
+  box-shadow: 0 2px 6px rgba(210, 105, 30, 0.4);
+}
+
+.bop-damage-msg .roll-header {
+  color: #d2691e;
+  font-size: 22px;
+}
+
+/* Hug Healing Messages */
+.hug-roll-msg {
+  background: linear-gradient(135deg, #fff0f5 0%, #ffe5f0 100%);
+  border: 3px solid #ff69b4;
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.4);
+  animation: heartbeat 0.5s ease-in-out;
+}
+
+.hug-roll-msg .roll-header {
+  color: #c71585;
+  font-size: 22px;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Ability Messages */
+.ability-roll-msg {
+  background: linear-gradient(135deg, #fffacd 0%, #fff9e5 100%);
+  border: 3px solid #ffd700;
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.4);
+}
+
+.ability-roll-msg .roll-header {
+  color: #c41e3a;
+  font-size: 22px;
+}
+
+.ability-roll-msg.battery-only {
+  background: linear-gradient(135deg, #e5f9ff 0%, #d0f0ff 100%);
+  border: 3px solid #4a90e2;
+}

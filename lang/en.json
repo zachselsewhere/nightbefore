@@ -1,0 +1,52 @@
+{
+  "NIGHTBEFORE": {
+    "SheetLabels": {
+      "Actor": "The Night Before Character Sheet"
+    },
+    "ActorType": {
+      "Toy": "Toy"
+    },
+    "Tabs": {
+      "Character": "Character Sheet",
+      "Guide": "Player's Guide"
+    },
+    "Build": {
+      "Size": "Size",
+      "Material": "Material",
+      "Cuteness": "Cuteness",
+      "YearsOwned": "Years Owned",
+      "Batteries": "Batteries",
+      "Joints": "Joints",
+      "Wheels": "Wheels",
+      "Movement": "Movement"
+    },
+    "Skills": {
+      "Sneak": "Sneak",
+      "Force": "Force",
+      "Maneuver": "Maneuver",
+      "TechUse": "Tech Use",
+      "Assess": "Assess",
+      "Charm": "Charm",
+      "Intimidate": "Intimidate"
+    },
+    "Wellbeing": {
+      "BA": "Bop Avoidance",
+      "BP": "Breaking Points",
+      "Maximum": "Maximum",
+      "Current": "Current",
+      "Battery": "Battery"
+    },
+    "Combat": {
+      "Bop": "Bop!",
+      "BopDamage": "Bop Damage"
+    },
+    "Healing": {
+      "Hug": "Hug"
+    },
+    "Abilities": {
+      "Ability": "Ability",
+      "Description": "Description",
+      "UsesBattery": "Uses Battery"
+    }
+  }
+}
