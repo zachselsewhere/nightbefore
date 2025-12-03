@@ -13,14 +13,19 @@ export class NightBeforeActor extends Actor {
     const systemData = actorData.system;
     const flags = actorData.flags.nightbefore || {};
 
-    // Only process toy actors
-    if (actorData.type !== 'toy') return;
+    // Only process toy actors with build calculations
+    if (actorData.type === 'toy') {
+      this._calculateSkillModifiers(systemData);
+      this._calculateBopAvoidance(systemData);
+      this._calculateMovement(systemData);
+      this._calculateHugModifier(systemData);
+      this._applyBatteryPenalty(systemData);
+    }
 
-    this._calculateSkillModifiers(systemData);
-    this._calculateBopAvoidance(systemData);
-    this._calculateMovement(systemData);
-    this._calculateHugModifier(systemData);
-    this._applyBatteryPenalty(systemData);
+    // Not Toy actors use static values - no calculations needed
+    if (actorData.type === 'nottoy') {
+      // No derived calculations - all values are directly editable
+    }
   }
 
   _calculateSkillModifiers(systemData) {
@@ -109,22 +114,34 @@ export class NightBeforeActor extends Actor {
     if (build.wheels) {
       systemData.combat.movement += 10;
     }
+
+    // Apply manual modifiers to all skills
+    Object.keys(skills).forEach(skill => {
+      if (skills[skill].manualMod !== undefined) {
+        skills[skill].value += skills[skill].manualMod;
+      }
+    });
   }
 
   _calculateBopAvoidance(systemData) {
     const maneuverMod = systemData.skills.maneuver.value;
     const sizeBAMod = systemData._sizeBAMod || 0;
-    systemData.wellbeing.ba.value = 10 + maneuverMod + sizeBAMod;
+    const manualMod = systemData.wellbeing.ba.manualMod || 0;
+    systemData.wellbeing.ba.value = 10 + maneuverMod + sizeBAMod + manualMod;
   }
 
   _calculateMovement(systemData) {
     // Movement is already set in _calculateSkillModifiers
-    // This method exists for clarity and future expansion
+    // Apply manual modifier to movement
+    const manualMod = systemData.combat.manualMod || 0;
+    systemData.combat.movement += manualMod;
   }
 
   _calculateHugModifier(systemData) {
     // Hug modifier is already set in _calculateSkillModifiers
-    // This method exists for clarity and future expansion
+    // Apply manual modifier to hug
+    const manualMod = systemData.healing.manualMod || 0;
+    systemData.healing.hugMod += manualMod;
   }
 
   _applyBatteryPenalty(systemData) {
@@ -213,8 +230,8 @@ export class NightBeforeActor extends Actor {
     const ability = this.system.abilities[abilityKey];
     if (!ability || !ability.name) return;
 
-    // Check if using battery
-    if (ability.usesBattery) {
+    // Check if using battery (only for toy actors)
+    if (ability.usesBattery && this.type === 'toy') {
       if (this.system.wellbeing.battery.charge <= 0) {
         ui.notifications.warn('Battery is empty!');
         return;
@@ -239,12 +256,14 @@ export class NightBeforeActor extends Actor {
 
       const batteryUsed = ability.usesBattery ? '<div class="roll-battery">⚡ Used Battery Charge</div>' : '';
       const modifierText = skillName ? `<div class="roll-modifier">${skillName}: ${skillMod >= 0 ? '+' : ''}${skillMod}</div>` : '';
+      const descriptionText = ability.description ? `<div class="roll-description">${ability.description}</div>` : '';
 
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         flavor: `<div class="nightbefore-roll ability-roll-msg">
           <div class="roll-header">✨ ${ability.name}</div>
           <div class="roll-subtext">Special Ability Activated!</div>
+          ${descriptionText}
           ${modifierText}
           ${batteryUsed}
         </div>`,
@@ -254,11 +273,14 @@ export class NightBeforeActor extends Actor {
       return roll;
     } else {
       // Battery only ability
+      const descriptionText = ability.description ? `<div class="roll-description">${ability.description}</div>` : '';
+
       ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         content: `<div class="nightbefore-roll ability-roll-msg battery-only">
           <div class="roll-header">✨ ${ability.name}</div>
           <div class="roll-subtext">Special Ability Activated!</div>
+          ${descriptionText}
           <div class="roll-battery">⚡ Used Battery Charge</div>
         </div>`
       });
@@ -289,5 +311,102 @@ export class NightBeforeActor extends Actor {
     if (currentCharge - 1 === 0) {
       ui.notifications.warn('Battery is now dead! You suffer -1 to all skills.');
     }
+  }
+
+  async rollBreakingPoints() {
+    const size = this.system.build.size;
+    const material = this.system.build.material;
+
+    // Validate selections
+    if (!size || !material) {
+      ui.notifications.warn('Please select both Size and Material before rolling Breaking Points!');
+      return;
+    }
+
+    // Material determines base value and die type
+    const materialData = {
+      'plush': { base: 4, die: 'd4' },
+      'soft': { base: 6, die: 'd6' },
+      'combo': { base: 8, die: 'd8' },
+      'flexplas': { base: 10, die: 'd10' },
+      'hardplas': { base: 12, die: 'd12' }
+    };
+
+    // Size determines dice multiplier
+    const sizeMultiplier = {
+      'smallest': 1,
+      'small': 2,
+      'medium': 3,
+      'large': 4,
+      'largest': 5
+    };
+
+    const matData = materialData[material];
+    const multiplier = sizeMultiplier[size];
+
+    if (!matData || !multiplier) {
+      ui.notifications.error('Invalid size or material selection!');
+      return;
+    }
+
+    // Build formula: base + (multiplier)d(die)
+    const formula = `${matData.base} + ${multiplier}${matData.die}`;
+    const roll = await new Roll(formula).evaluate();
+
+    // Update BP max
+    await this.update({
+      'system.wellbeing.bp.max': roll.total,
+      'system.wellbeing.bp.value': roll.total
+    });
+
+    // Post to chat
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `<div class="nightbefore-roll bp-roll-msg">
+        <div class="roll-header">💚 BREAKING POINTS!</div>
+        <div class="roll-subtext">Rolling maximum Breaking Points...</div>
+        <div class="roll-details">Size: ${size.charAt(0).toUpperCase() + size.slice(1)} | Material: ${material.charAt(0).toUpperCase() + material.slice(1)}</div>
+        <div class="roll-formula">Formula: ${formula}</div>
+      </div>`,
+      rollMode: game.settings.get('core', 'rollMode')
+    });
+
+    ui.notifications.info(`Breaking Points set to ${roll.total}!`);
+  }
+
+  /**
+   * Get the initiative formula for this Actor
+   * @returns {string} The initiative formula
+   */
+  _getInitiativeFormula() {
+    const maneuverMod = this.system.skills.maneuver.value;
+    return `1d20 + ${maneuverMod}`;
+  }
+
+  /**
+   * Roll initiative for this Actor
+   * @param {object} options - Options which configure initiative roll
+   * @returns {Promise}
+   */
+  async rollInitiative(options = {}) {
+    const maneuverMod = this.system.skills.maneuver.value;
+
+    // Create and evaluate the roll
+    const roll = await new Roll('1d20 + @mod', { mod: maneuverMod }).evaluate();
+
+    // Post to chat if not in combat
+    if (!options.createCombatants) {
+      roll.toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        flavor: `<div class="nightbefore-roll initiative-roll-msg">
+          <div class="roll-header">⚡ INITIATIVE!</div>
+          <div class="roll-subtext">Ready to act! Rolling for turn order...</div>
+          <div class="roll-modifier">Maneuver: ${maneuverMod >= 0 ? '+' : ''}${maneuverMod}</div>
+        </div>`,
+        rollMode: game.settings.get('core', 'rollMode')
+      });
+    }
+
+    return roll;
   }
 }

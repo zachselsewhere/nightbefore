@@ -1,0 +1,164 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"/>
+      </h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body nottoy-body">
+
+    {{!-- Top Row: Wellbeing + Skills --}}
+    <div class="stats-row">
+
+      {{!-- Wellbeing --}}
+      <div class="wellbeing-compact">
+        <div class="stat-box ba-box">
+          <label>BA</label>
+          <div class="stat-inputs">
+            <input type="number" name="system.wellbeing.ba.value" value="{{system.wellbeing.ba.value}}" data-dtype="Number" class="ba-input"/>
+          </div>
+        </div>
+
+        <div class="stat-box bp-box">
+          <label>Breaking Points</label>
+          <div class="bp-inputs">
+            <input type="number" name="system.wellbeing.bp.value" value="{{system.wellbeing.bp.value}}" placeholder="Current" data-dtype="Number"/>
+            <span>/</span>
+            <input type="number" name="system.wellbeing.bp.max" value="{{system.wellbeing.bp.max}}" placeholder="Max" data-dtype="Number"/>
+          </div>
+        </div>
+
+        <div class="movement-box">
+          <label>Movement</label>
+          <div class="movement-input-wrapper">
+            <input type="number" name="system.combat.movement" value="{{system.combat.movement}}" data-dtype="Number" class="movement-input"/>
+            <span class="movement-unit">"</span>
+          </div>
+        </div>
+      </div>
+
+      {{!-- Skills --}}
+      <div class="skills-compact">
+        <h3>🎲 Skills</h3>
+        <div class="skills-grid-editable">
+          <label>Sneak</label>
+          <input type="number" name="system.skills.sneak.value" value="{{system.skills.sneak.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="sneak">Roll</button>
+
+          <label>Force</label>
+          <input type="number" name="system.skills.force.value" value="{{system.skills.force.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="force">Roll</button>
+
+          <label>Maneuver</label>
+          <input type="number" name="system.skills.maneuver.value" value="{{system.skills.maneuver.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="maneuver">Roll</button>
+
+          <label>Tech Use</label>
+          <input type="number" name="system.skills.techUse.value" value="{{system.skills.techUse.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="techUse">Roll</button>
+
+          <label>Assess</label>
+          <input type="number" name="system.skills.assess.value" value="{{system.skills.assess.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="assess">Roll</button>
+
+          <label>Charm</label>
+          <input type="number" name="system.skills.charm.value" value="{{system.skills.charm.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="charm">Roll</button>
+
+          <label>Intimidate</label>
+          <input type="number" name="system.skills.intimidate.value" value="{{system.skills.intimidate.value}}" data-dtype="Number" class="skill-input"/>
+          <button type="button" class="skill-roll" data-skill="intimidate">Roll</button>
+        </div>
+      </div>
+
+      {{!-- Combat & Healing --}}
+      <div class="actions-compact">
+        <div class="combat-section">
+          <h3>Combat</h3>
+          <button type="button" class="initiative-roll action-btn">⚡ Initiative</button>
+          <button type="button" class="bop-roll action-btn">🥊 Bop!</button>
+          <button type="button" class="bop-damage-roll action-btn">💥 Bop Damage</button>
+        </div>
+
+        <div class="healing-section">
+          <h3>Healing</h3>
+          <div class="hug-input-row">
+            <label>Hug Mod:</label>
+            <input type="number" name="system.healing.hugMod" value="{{system.healing.hugMod}}" data-dtype="Number" class="hug-mod-input"/>
+          </div>
+          <button type="button" class="hug-roll action-btn">💕 Hug (1d6{{numberFormat system.healing.hugMod decimals=0 sign=true}})</button>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Abilities --}}
+    <div class="abilities-compact">
+      <h3>✨ Abilities</h3>
+
+      <div class="ability-block">
+        <div class="ability-title-row">
+          <input type="text" name="system.abilities.ability1.name" value="{{system.abilities.ability1.name}}" placeholder="Ability 1 Name" class="ability-name"/>
+        </div>
+        <div class="ability-controls">
+          <div class="ability-controls-left">
+            <select name="system.abilities.ability1.skillMod" class="ability-select">
+              <option value="none">No Mod</option>
+              <option value="sneak" {{#if (eq system.abilities.ability1.skillMod "sneak")}}selected{{/if}}>Sneak</option>
+              <option value="force" {{#if (eq system.abilities.ability1.skillMod "force")}}selected{{/if}}>Force</option>
+              <option value="maneuver" {{#if (eq system.abilities.ability1.skillMod "maneuver")}}selected{{/if}}>Maneuver</option>
+              <option value="techUse" {{#if (eq system.abilities.ability1.skillMod "techUse")}}selected{{/if}}>Tech</option>
+              <option value="assess" {{#if (eq system.abilities.ability1.skillMod "assess")}}selected{{/if}}>Assess</option>
+              <option value="charm" {{#if (eq system.abilities.ability1.skillMod "charm")}}selected{{/if}}>Charm</option>
+              <option value="intimidate" {{#if (eq system.abilities.ability1.skillMod "intimidate")}}selected{{/if}}>Intimidate</option>
+            </select>
+            <select name="system.abilities.ability1.diceType" class="ability-select">
+              <option value="1d6" {{#if (eq system.abilities.ability1.diceType "1d6")}}selected{{/if}}>d6</option>
+              <option value="1d8" {{#if (eq system.abilities.ability1.diceType "1d8")}}selected{{/if}}>d8</option>
+              <option value="1d10" {{#if (eq system.abilities.ability1.diceType "1d10")}}selected{{/if}}>d10</option>
+            </select>
+          </div>
+          <div class="ability-controls-right">
+            <button type="button" class="ability-roll" data-ability="ability1">Use</button>
+          </div>
+        </div>
+        <textarea name="system.abilities.ability1.description" class="ability-description" placeholder="Describe what this ability does, its effects, and when it can be used...">{{system.abilities.ability1.description}}</textarea>
+      </div>
+
+      <div class="ability-block">
+        <div class="ability-title-row">
+          <input type="text" name="system.abilities.ability2.name" value="{{system.abilities.ability2.name}}" placeholder="Ability 2 Name" class="ability-name"/>
+        </div>
+        <div class="ability-controls">
+          <div class="ability-controls-left">
+            <select name="system.abilities.ability2.skillMod" class="ability-select">
+              <option value="none">No Mod</option>
+              <option value="sneak" {{#if (eq system.abilities.ability2.skillMod "sneak")}}selected{{/if}}>Sneak</option>
+              <option value="force" {{#if (eq system.abilities.ability2.skillMod "force")}}selected{{/if}}>Force</option>
+              <option value="maneuver" {{#if (eq system.abilities.ability2.skillMod "maneuver")}}selected{{/if}}>Maneuver</option>
+              <option value="techUse" {{#if (eq system.abilities.ability2.skillMod "techUse")}}selected{{/if}}>Tech</option>
+              <option value="assess" {{#if (eq system.abilities.ability2.skillMod "assess")}}selected{{/if}}>Assess</option>
+              <option value="charm" {{#if (eq system.abilities.ability2.skillMod "charm")}}selected{{/if}}>Charm</option>
+              <option value="intimidate" {{#if (eq system.abilities.ability2.skillMod "intimidate")}}selected{{/if}}>Intimidate</option>
+            </select>
+            <select name="system.abilities.ability2.diceType" class="ability-select">
+              <option value="1d6" {{#if (eq system.abilities.ability2.diceType "1d6")}}selected{{/if}}>d6</option>
+              <option value="1d8" {{#if (eq system.abilities.ability2.diceType "1d8")}}selected{{/if}}>d8</option>
+              <option value="1d10" {{#if (eq system.abilities.ability2.diceType "1d10")}}selected{{/if}}>d10</option>
+            </select>
+          </div>
+          <div class="ability-controls-right">
+            <button type="button" class="ability-roll" data-ability="ability2">Use</button>
+          </div>
+        </div>
+        <textarea name="system.abilities.ability2.description" class="ability-description" placeholder="Describe what this ability does, its effects, and when it can be used...">{{system.abilities.ability2.description}}</textarea>
+      </div>
+    </div>
+
+  </section>
+
+</form>

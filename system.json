@@ -29,13 +29,15 @@
   "packs": [],
   "documentTypes": {
     "Actor": {
-      "toy": {}
+      "toy": {},
+      "nottoy": {}
     }
   },
   "grid": {
     "distance": 1,
     "units": "in"
   },
+  "initiative": "1d20 + @skills.maneuver.value",
   "primaryTokenAttribute": "wellbeing.bp",
   "secondaryTokenAttribute": null,
   "url": "https://github.com/zachselsewhere/nightbefore",

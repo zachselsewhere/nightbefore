@@ -96,6 +96,7 @@
         <div class="actions-compact">
           <div class="combat-section">
             <h3>Combat</h3>
+            <button type="button" class="initiative-roll action-btn">⚡ Initiative</button>
             <button type="button" class="bop-roll action-btn">🥊 Bop!</button>
             <button type="button" class="bop-damage-roll action-btn">💥 Bop Damage</button>
           </div>
@@ -242,20 +243,88 @@
           </div>
         </div>
 
+        <div class="bp-roll-section">
+          <button type="button" class="bp-roll-btn" {{#unless (and system.build.size system.build.material)}}disabled{{/unless}}>
+            🎲 Roll For Breaking Points
+          </button>
+          <p class="bp-roll-hint">Select Size and Material to roll your Breaking Points</p>
+        </div>
+
         <div class="build-summary">
-          <h4>Current Modifiers</h4>
-          <div class="summary-grid">
-            <div><strong>Movement:</strong> {{system.combat.movement}}"</div>
-            <div><strong>Sneak:</strong> {{numberFormat system.skills.sneak.value decimals=0 sign=true}}</div>
-            <div><strong>Force:</strong> {{numberFormat system.skills.force.value decimals=0 sign=true}}</div>
-            <div><strong>Maneuver:</strong> {{numberFormat system.skills.maneuver.value decimals=0 sign=true}}</div>
-            <div><strong>Tech Use:</strong> {{numberFormat system.skills.techUse.value decimals=0 sign=true}}</div>
-            <div><strong>Assess:</strong> {{numberFormat system.skills.assess.value decimals=0 sign=true}}</div>
-            <div><strong>Charm:</strong> {{numberFormat system.skills.charm.value decimals=0 sign=true}}</div>
-            <div><strong>Intimidate:</strong> {{numberFormat system.skills.intimidate.value decimals=0 sign=true}}</div>
-            <div><strong>Bop Avoidance:</strong> {{system.wellbeing.ba.value}}</div>
-            <div><strong>Hug Modifier:</strong> {{numberFormat system.healing.hugMod decimals=0 sign=true}}</div>
+          <h4>Modifiers</h4>
+
+          <div class="summary-grid modifier-display">
+            <div><strong>Movement:</strong> <span class="mod-value">{{system.combat.movement}}"</span></div>
+            <div><strong>Sneak:</strong> <span class="mod-value">{{numberFormat system.skills.sneak.value decimals=0 sign=true}}</span></div>
+            <div><strong>Force:</strong> <span class="mod-value">{{numberFormat system.skills.force.value decimals=0 sign=true}}</span></div>
+            <div><strong>Maneuver:</strong> <span class="mod-value">{{numberFormat system.skills.maneuver.value decimals=0 sign=true}}</span></div>
+            <div><strong>Tech Use:</strong> <span class="mod-value">{{numberFormat system.skills.techUse.value decimals=0 sign=true}}</span></div>
+            <div><strong>Assess:</strong> <span class="mod-value">{{numberFormat system.skills.assess.value decimals=0 sign=true}}</span></div>
+            <div><strong>Charm:</strong> <span class="mod-value">{{numberFormat system.skills.charm.value decimals=0 sign=true}}</span></div>
+            <div><strong>Intimidate:</strong> <span class="mod-value">{{numberFormat system.skills.intimidate.value decimals=0 sign=true}}</span></div>
+            <div><strong>Bop Avoidance:</strong> <span class="mod-value">{{system.wellbeing.ba.value}}</span></div>
+            <div><strong>Hug Modifier:</strong> <span class="mod-value">{{numberFormat system.healing.hugMod decimals=0 sign=true}}</span></div>
           </div>
+
+          <div class="modifier-editor" style="display:none;">
+            <div class="modifier-editor-grid">
+              <div class="modifier-row">
+                <label>Movement</label>
+                <span class="current-value">{{system.combat.movement}}"</span>
+                <input type="number" name="system.combat.manualMod" value="{{system.combat.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Sneak</label>
+                <span class="current-value">{{numberFormat system.skills.sneak.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.sneak.manualMod" value="{{system.skills.sneak.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Force</label>
+                <span class="current-value">{{numberFormat system.skills.force.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.force.manualMod" value="{{system.skills.force.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Maneuver</label>
+                <span class="current-value">{{numberFormat system.skills.maneuver.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.maneuver.manualMod" value="{{system.skills.maneuver.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Tech Use</label>
+                <span class="current-value">{{numberFormat system.skills.techUse.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.techUse.manualMod" value="{{system.skills.techUse.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Assess</label>
+                <span class="current-value">{{numberFormat system.skills.assess.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.assess.manualMod" value="{{system.skills.assess.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Charm</label>
+                <span class="current-value">{{numberFormat system.skills.charm.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.charm.manualMod" value="{{system.skills.charm.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Intimidate</label>
+                <span class="current-value">{{numberFormat system.skills.intimidate.value decimals=0 sign=true}}</span>
+                <input type="number" name="system.skills.intimidate.manualMod" value="{{system.skills.intimidate.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Bop Avoidance</label>
+                <span class="current-value">{{system.wellbeing.ba.value}}</span>
+                <input type="number" name="system.wellbeing.ba.manualMod" value="{{system.wellbeing.ba.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+              <div class="modifier-row">
+                <label>Hug Modifier</label>
+                <span class="current-value">{{numberFormat system.healing.hugMod decimals=0 sign=true}}</span>
+                <input type="number" name="system.healing.manualMod" value="{{system.healing.manualMod}}" min="-10" max="10" data-dtype="Number" class="modifier-input"/>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="toggle-modifier-edit" data-action="toggle-modifier-edit">
+            <span class="edit-label">✏️ Edit</span>
+            <span class="done-label" style="display:none;">✓ Done</span>
+          </button>
         </div>
       </div>
 

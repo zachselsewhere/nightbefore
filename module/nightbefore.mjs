@@ -1,5 +1,6 @@
 import { NightBeforeActor } from "./documents/actor.mjs";
 import { NightBeforeActorSheet } from "./sheets/actor-sheet.mjs";
+import { NightBeforeNotToySheet } from "./sheets/nottoy-sheet.mjs";
 
 Hooks.once('init', async function() {
   console.log('The Night Before | Initializing system');
@@ -7,12 +8,21 @@ Hooks.once('init', async function() {
   // Register custom Actor document class
   CONFIG.Actor.documentClass = NightBeforeActor;
 
-  // Register sheet application
+  // Register sheet applications
   Actors.unregisterSheet("core", ActorSheet);
+
+  // Toy sheet
   Actors.registerSheet("nightbefore", NightBeforeActorSheet, {
     types: ["toy"],
     makeDefault: true,
-    label: "NIGHTBEFORE.SheetLabels.Actor"
+    label: "NIGHTBEFORE.SheetLabels.ToyActor"
+  });
+
+  // Not Toy sheet
+  Actors.registerSheet("nightbefore", NightBeforeNotToySheet, {
+    types: ["nottoy"],
+    makeDefault: true,
+    label: "NIGHTBEFORE.SheetLabels.NotToyActor"
   });
 
   // Preload Handlebars templates (if needed in future)
@@ -75,7 +85,7 @@ Hooks.once('ready', async function() {
               title: { show: true, level: 1 },
               text: {
                 format: 1,
-                content: "<h1>Turn-Based Gameplay</h1><p>If a situation develops in the game that requires things to be taken one step at a time (typically during combat or puzzle challenges) the GM may call for a Maneuver Roll to determine a turn order. Whoever rolls higher goes first.</p><h2>Each Turn consists of just two components:</h2><h3>Movement</h3><p>Your Toy's Movement is primarily based on their Size (the only exception being if your Toy has wheels). When it is your Turn, you are allowed to move your Toy up to the full amount of their Movement. If you wish to forgo an Action you may move your Toy up to double their typical amount.</p><h3>Action</h3><p>Your Toy's Action may consist of one of the following:</p><ul><li>Performing a Skill</li><li>Giving an ally a Hug</li><li>Giving an opponent a BOP</li><li>Using an Ability</li></ul><hr><h2>We Hope You Enjoy</h2><h1 style=\"text-align: center;\">The Night Before</h1>"
+                content: "<h1>Turn-Based Gameplay</h1><p>If a situation develops in the game that requires things to be taken one step at a time (typically during combat or puzzle challenges) the GM may call for Initiative to determine turn order.</p><h2>Initiative</h2><p>Initiative is rolled at the start of turn-based encounters to determine the order in which characters act. To roll Initiative, each player rolls <strong>1d20 + Maneuver Modifier</strong>. Whoever rolls higher goes first, with ties being re-rolled or decided by the GM.</p><h2>Each Turn consists of just two components:</h2><h3>Movement</h3><p>Your Toy's Movement is primarily based on their Size (the only exception being if your Toy has wheels). When it is your Turn, you are allowed to move your Toy up to the full amount of their Movement. If you wish to forgo an Action you may move your Toy up to double their typical amount.</p><h3>Action</h3><p>Your Toy's Action may consist of one of the following:</p><ul><li>Performing a Skill</li><li>Giving an ally a Hug</li><li>Giving an opponent a BOP</li><li>Using an Ability</li></ul><hr><h2>We Hope You Enjoy</h2><h1 style=\"text-align: center;\">The Night Before</h1>"
               }
             }
           ]
