@@ -6,6 +6,8 @@ export class NightBeforeActorSheet extends ActorSheet {
       width: 750,
       height: 700,
       resizable: true,
+      submitOnChange: true,
+      closeOnSubmit: false,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "stats" }],
       dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }]
     });

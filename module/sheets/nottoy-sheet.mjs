@@ -5,7 +5,9 @@ export class NightBeforeNotToySheet extends ActorSheet {
       classes: ["nightbefore", "sheet", "actor", "nottoy"],
       width: 750,
       height: 700,
-      resizable: true
+      resizable: true,
+      submitOnChange: true,
+      closeOnSubmit: false
     });
   }
 
